@@ -5,12 +5,23 @@
       "node_modules"
     ],
     "types": [
-      "node", "jest", "lodash", "react",
-      "react-dom", "react-redux", "redux-logger", "material-ui",
-      "react-router-dom", "react-router-redux",
-      "redux", "binary-type-tree", "redux-form",
-      "tedb", "react-tap-event-plugin",
-      "react-hot-loader", "material-ui-icons"
+      "node",
+      "jest",
+      "lodash",
+      "react",
+      "react-dom",
+      "react-redux",
+      "redux-logger",
+      "material-ui",
+      "react-router-dom",
+      "react-router-redux",
+      "redux",
+      "binary-type-tree",
+      "redux-form",
+      "tedb",
+      "react-tap-event-plugin",
+      "react-hot-loader",
+      "material-ui-icons"
     ],
     "allowJs": true,
     "esModuleInterop": true,
@@ -21,10 +32,16 @@
     "importHelpers": true,
     "noEmit": true,
     "strict": false,
-    "lib": ["es5", "es6"],
+    "lib": [
+      "es5",
+      "es6"
+    ],
     "allowSyntheticDefaultImports": true
   },
-  "files": ["./node_modules", "node_modules/**"],
+  "files": [
+    "./node_modules",
+    "node_modules/**"
+  ],
   "exclude": [
     "node_modules/**",
     "./node_modules",
