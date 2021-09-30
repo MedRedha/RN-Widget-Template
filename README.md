@@ -24,6 +24,7 @@
 <br />
 
 # 💪 Dev Team
+
 <table align="center">
 <tbody>
   <div>
@@ -49,6 +50,7 @@
 <br />
 
 ## 👨‍⚖️ License
+
 The code is available under the [MIT](https://github.com/WuuD-Team/RedhaBoilerplate/blob/main/LICENSE) license.
 
 <br />
