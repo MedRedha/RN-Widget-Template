@@ -13,8 +13,8 @@
 
 <p align="center">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/MedRedha/RN-Widget-Template?style=flat&color=blueviolet&logo=GitHub&label=Version" />
-    <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/MedRedha/RedhaBoilerplate/react-native?style=flat&logo=React&label=React%20Native" />
-    <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/MedRedha/RedhaBoilerplate/dev/typescript?style=flat&color=informational&logo=TypeScript&label=TypeScript&logoColor=yellow" />
+    <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/MedRedha/RN-Widget-Template/react-native?style=flat&logo=React&label=React%20Native" />
+    <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/MedRedha/RN-Widget-Template/dev/typescript?style=flat&color=informational&logo=TypeScript&label=TypeScript&logoColor=yellow" />
 </p>
 
 <p align="center"> 
