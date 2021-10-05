@@ -1,31 +1,59 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
+import SharedGroupPreferences from 'react-native-shared-group-preferences';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+const appGroupIdentifier = 'group.com.wuud-team.redhawidget';
 
 const RedhaWidget = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [inputText, setInputText] = useState<string>();
+  const widgetData = {
+    displayText: inputText,
+  };
 
-  const backgroundStyle = {
-    flex: 1,
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const handleSubmit = async () => {
+    try {
+      await SharedGroupPreferences.setItem(
+        'savedData',
+        widgetData,
+        appGroupIdentifier
+      );
+    } catch (error) {
+      return null;
+    }
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior='automatic'
-        style={backgroundStyle}>
-        <Header />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Enter text to display on widget:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setInputText(text)}
+        value={inputText}
+        returnKeyType='send'
+        onEndEditing={handleSubmit}
+        placeholder='Med Redha'
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#ffffff',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 8,
+    width: '100%',
+    marginTop: 16,
+    paddingHorizontal: 8,
+  },
+});
 
 export default RedhaWidget;

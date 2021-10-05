@@ -2,61 +2,88 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+struct WidgetData: Decodable {
+  var displayText: String
+}
+
 struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
-    }
+  func placeholder(in context: Context) -> SimpleEntry {
+    SimpleEntry(date: Date(), configuration: ConfigurationIntent(), displayText: "Placeholder")
+  }
+  
+  func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    let entry = SimpleEntry(date: Date(), configuration: configuration, displayText: "Data goes here")
+    completion(entry)
+  }
+  
+  func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
+    let entryDate = Date()
+    
+    let userDefaults = UserDefaults.init(suiteName: "group.com.wuud-team.redhawidget")
+    if userDefaults != nil {
+      if let savedData = userDefaults!.value(forKey: "savedData") as? String {
+        let decoder = JSONDecoder()
+        let data = savedData.data(using: .utf8)
+        
+        if let parsedData = try? decoder.decode(WidgetData.self, from: data!) {
+          let nextRefresh = Calendar.current.date(byAdding: .second, value: 5, to: entryDate)!
+          let entry = SimpleEntry(date: nextRefresh, configuration: configuration, displayText: parsedData.displayText)
+          let timeline = Timeline(entries: [entry], policy: .atEnd)
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
-    }
-
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+          completion(timeline)
+        } else {
+          print("Could not parse data")
         }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+      } else {
+        let nextRefresh = Calendar.current.date(byAdding: .second, value: 5, to: entryDate)!
+        let entry = SimpleEntry(date: nextRefresh, configuration: configuration, displayText: "No data set")
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
+
         completion(timeline)
+      }
     }
+  }
 }
 
 struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationIntent
+  let date: Date
+  let configuration: ConfigurationIntent
+  let displayText: String
 }
 
 struct RedhaWidgetEntryView : View {
-    var entry: Provider.Entry
+  var entry: Provider.Entry
 
-    var body: some View {
-        Text(entry.date, style: .time)
-    }
+  var body: some View {
+    LinearGradient(gradient: Gradient(colors: [.blue, .orange]), startPoint: .top, endPoint: .bottom)
+      .edgesIgnoringSafeArea(.vertical)
+      .overlay(
+        VStack {
+          Text(entry.displayText)
+            .bold()
+            .foregroundColor(.white)
+        }.padding(20)
+      )
+  }
 }
 
 @main
 struct RedhaWidget: Widget {
-    let kind: String = "RedhaWidget"
+  let kind: String = "RedhaWidget"
 
-    var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            RedhaWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+  var body: some WidgetConfiguration {
+    IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+      RedhaWidgetEntryView(entry: entry)
     }
+    .configurationDisplayName("My Widget")
+    .description("This is an example widget.")
+  }
 }
 
 struct RedhaWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
+  static var previews: some View {
+    RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), displayText: "Widget preview"))
+      .previewContext(WidgetPreviewContext(family: .systemSmall))
+  }
 }
