@@ -14,6 +14,14 @@
 		6172F2D35A4C3AA820D92908 /* libPods-ReactNativeWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-ReactNativeWidget.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-ReactNativeWidget-ReactNativeWidgetTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-ReactNativeWidget-ReactNativeWidgetTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8FF13E472706344F00A9FA8C /* Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF13E462706344F00A9FA8C /* Void.swift */; };
+		8FFAE66C270B2CC800E2288A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFAE66B270B2CC800E2288A /* WidgetKit.framework */; };
+		8FFAE66E270B2CC800E2288A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFAE66D270B2CC800E2288A /* SwiftUI.framework */; };
+		8FFAE671270B2CC800E2288A /* RedhaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFAE670270B2CC800E2288A /* RedhaWidget.swift */; };
+		8FFAE674270B2CCA00E2288A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FFAE673270B2CCA00E2288A /* Assets.xcassets */; };
+		8FFAE676270B2CCA00E2288A /* RedhaWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8FFAE672270B2CC800E2288A /* RedhaWidget.intentdefinition */; };
+		8FFAE677270B2CCA00E2288A /* RedhaWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8FFAE672270B2CC800E2288A /* RedhaWidget.intentdefinition */; };
+		8FFAE67A270B2CCA00E2288A /* RedhaWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8FFAE66A270B2CC800E2288A /* RedhaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,7 +32,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = ReactNativeWidget;
 		};
+		8FFAE678270B2CCA00E2288A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FFAE669270B2CC800E2288A;
+			remoteInfo = RedhaWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FFAE67B270B2CCA00E2288A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8FFAE67A270B2CCA00E2288A /* RedhaWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* ReactNativeWidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeWidgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +69,16 @@
 		6423831EA8574132BED9D8CC /* libPods-ReactNativeWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-ReactNativeWidget-ReactNativeWidgetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeWidget-ReactNativeWidgetTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeWidget-ReactNativeWidgetTests/Pods-ReactNativeWidget-ReactNativeWidgetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ReactNativeWidget/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FA479A4270CB58E00A27600 /* RedhaWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedhaWidgetExtension.entitlements; sourceTree = "<group>"; };
+		8FF13E462706344F00A9FA8C /* Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Void.swift; sourceTree = "<group>"; };
+		8FFAE66A270B2CC800E2288A /* RedhaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RedhaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FFAE66B270B2CC800E2288A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8FFAE66D270B2CC800E2288A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8FFAE670270B2CC800E2288A /* RedhaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedhaWidget.swift; sourceTree = "<group>"; };
+		8FFAE672270B2CC800E2288A /* RedhaWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = RedhaWidget.intentdefinition; sourceTree = "<group>"; };
+		8FFAE673270B2CCA00E2288A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FFAE675270B2CCA00E2288A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FFAE680270C952900E2288A /* ReactNativeWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ReactNativeWidget.entitlements; path = ReactNativeWidget/ReactNativeWidget.entitlements; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-ReactNativeWidget-ReactNativeWidgetTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeWidget-ReactNativeWidgetTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-ReactNativeWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeWidget.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeWidget/Pods-ReactNativeWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-ReactNativeWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeWidget.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeWidget/Pods-ReactNativeWidget.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,6 +99,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6172F2D35A4C3AA820D92908 /* libPods-ReactNativeWidget.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FFAE667270B2CC800E2288A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FFAE66E270B2CC800E2288A /* SwiftUI.framework in Frameworks */,
+				8FFAE66C270B2CC800E2288A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +134,7 @@
 		13B07FAE1A68108700A75B9A /* ReactNativeWidget */ = {
 			isa = PBXGroup;
 			children = (
+				8FFAE680270C952900E2288A /* ReactNativeWidget.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -102,6 +151,8 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				6423831EA8574132BED9D8CC /* libPods-ReactNativeWidget.a */,
 				ABFE59519B596E51CEFDCCC0 /* libPods-ReactNativeWidget-ReactNativeWidgetTests.a */,
+				8FFAE66B270B2CC800E2288A /* WidgetKit.framework */,
+				8FFAE66D270B2CC800E2288A /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,9 +167,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8FA479A4270CB58E00A27600 /* RedhaWidgetExtension.entitlements */,
+				8FF13E462706344F00A9FA8C /* Void.swift */,
 				13B07FAE1A68108700A75B9A /* ReactNativeWidget */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeWidgetTests */,
+				8FFAE66F270B2CC800E2288A /* RedhaWidget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
@@ -133,8 +187,20 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* ReactNativeWidget.app */,
 				00E356EE1AD99517003FC87E /* ReactNativeWidgetTests.xctest */,
+				8FFAE66A270B2CC800E2288A /* RedhaWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8FFAE66F270B2CC800E2288A /* RedhaWidget */ = {
+			isa = PBXGroup;
+			children = (
+				8FFAE670270B2CC800E2288A /* RedhaWidget.swift */,
+				8FFAE672270B2CC800E2288A /* RedhaWidget.intentdefinition */,
+				8FFAE673270B2CCA00E2288A /* Assets.xcassets */,
+				8FFAE675270B2CCA00E2288A /* Info.plist */,
+			);
+			path = RedhaWidget;
 			sourceTree = "<group>";
 		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
@@ -145,7 +211,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-ReactNativeWidget-ReactNativeWidgetTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-ReactNativeWidget-ReactNativeWidgetTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -185,15 +250,34 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				C8AC78B0264D0F9F6F6D630E /* [CP] Embed Pods Frameworks */,
 				ADC9DDC32298B72B3CF5DC8E /* [CP] Copy Pods Resources */,
+				8FFAE67B270B2CCA00E2288A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8FFAE679270B2CCA00E2288A /* PBXTargetDependency */,
 			);
 			name = ReactNativeWidget;
 			productName = ReactNativeWidget;
 			productReference = 13B07F961A680F5B00A75B9A /* ReactNativeWidget.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8FFAE669270B2CC800E2288A /* RedhaWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FFAE67E270B2CCA00E2288A /* Build configuration list for PBXNativeTarget "RedhaWidgetExtension" */;
+			buildPhases = (
+				8FFAE666270B2CC800E2288A /* Sources */,
+				8FFAE667270B2CC800E2288A /* Frameworks */,
+				8FFAE668270B2CC800E2288A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RedhaWidgetExtension;
+			productName = RedhaWidgetExtension;
+			productReference = 8FFAE66A270B2CC800E2288A /* RedhaWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -201,6 +285,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -208,7 +293,10 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1300;
+					};
+					8FFAE669270B2CC800E2288A = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -227,6 +315,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* ReactNativeWidget */,
 				00E356ED1AD99517003FC87E /* ReactNativeWidgetTests */,
+				8FFAE669270B2CC800E2288A /* RedhaWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -248,12 +337,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8FFAE668270B2CC800E2288A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FFAE674270B2CCA00E2288A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -261,7 +358,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
@@ -412,7 +509,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				8FFAE677270B2CCA00E2288A /* RedhaWidget.intentdefinition in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8FF13E472706344F00A9FA8C /* Void.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FFAE666270B2CC800E2288A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FFAE671270B2CC800E2288A /* RedhaWidget.swift in Sources */,
+				8FFAE676270B2CCA00E2288A /* RedhaWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +532,11 @@
 			target = 13B07F861A680F5B00A75B9A /* ReactNativeWidget */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		8FFAE679270B2CCA00E2288A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FFAE669270B2CC800E2288A /* RedhaWidgetExtension */;
+			targetProxy = 8FFAE678270B2CCA00E2288A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -431,7 +544,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6C97AB639B58BBB4B15BBE30 /* Pods-ReactNativeWidget-ReactNativeWidgetTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -458,8 +573,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D0AE47A65C8663E3B452821 /* Pods-ReactNativeWidget-ReactNativeWidgetTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
 				INFOPLIST_FILE = ReactNativeWidgetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,21 +599,25 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C0A881CF5CF3F2B244570E2A /* Pods-ReactNativeWidget.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ReactNativeWidget/ReactNativeWidget.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReactNativeWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wuud-team.redhawidget";
 				PRODUCT_NAME = ReactNativeWidget;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -508,20 +629,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D00AAFFCFCFDA5787532823F /* Pods-ReactNativeWidget.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ReactNativeWidget/ReactNativeWidget.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
 				INFOPLIST_FILE = ReactNativeWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wuud-team.redhawidget";
 				PRODUCT_NAME = ReactNativeWidget;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -584,7 +709,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -642,12 +767,98 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8FFAE67C270B2CCA00E2288A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = RedhaWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedhaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedhaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wuud-team.redhawidget.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8FFAE67D270B2CCA00E2288A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = RedhaWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6GJZABJY9D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedhaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedhaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wuud-team.redhawidget.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -677,6 +888,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FFAE67E270B2CCA00E2288A /* Build configuration list for PBXNativeTarget "RedhaWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FFAE67C270B2CCA00E2288A /* Debug */,
+				8FFAE67D270B2CCA00E2288A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
