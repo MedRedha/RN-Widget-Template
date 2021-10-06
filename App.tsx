@@ -31,7 +31,6 @@ const RedhaWidget = () => {
         value={inputText}
         returnKeyType='send'
         onEndEditing={handleSubmit}
-        placeholder='Med Redha'
       />
     </View>
   );
