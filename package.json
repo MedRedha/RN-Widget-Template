@@ -25,6 +25,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-background-timer": "^2.4.1",
     "react-native-shared-group-preferences": "^1.1.23"
   },
   "devDependencies": {
