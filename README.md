@@ -16,7 +16,7 @@
 </p>
 
 <p align="center"> 
-  <img src="https://github.com/MedRedha/RN-Widget-Template/blob/widget-ui/assets/screenshots/Widget_Light.jpg?raw=true" />
+  <img src="https://github.com/Nebula-Team/RN-Widget-Template/blob/widget-ui/assets/screenshots/Widget_Light.png" />
 </p>
 
 <br />
