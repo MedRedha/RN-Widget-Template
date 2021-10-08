@@ -12,15 +12,16 @@ var zeroSeconds: Date? {
 
 struct WidgetData: Decodable {
   var btcPrice: String
+  var ethPrice: String
 }
 
 struct Provider: IntentTimelineProvider {
   func placeholder(in context: Context) -> SimpleEntry {
-    SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Placeholder")
+    SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Placeholder", ethPrice: "Placeholder")
   }
   
   func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-    let entry = SimpleEntry(date: Date(), configuration: configuration, btcPrice: "Data goes here")
+    let entry = SimpleEntry(date: Date(), configuration: configuration, btcPrice: "32,800€", ethPrice: "1750.20€")
     completion(entry)
   }
   
@@ -38,7 +39,7 @@ struct Provider: IntentTimelineProvider {
           
           for interval in 0 ..< 60 {
             let nextRefresh = Calendar.current.date(byAdding: .second , value: interval, to: date)!
-            let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: parsedData.btcPrice)
+            let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: parsedData.btcPrice, ethPrice: parsedData.ethPrice)
             entries.append(entry)
           }
           
@@ -52,7 +53,7 @@ struct Provider: IntentTimelineProvider {
         
       } else {
         let nextRefresh = Calendar.current.date(byAdding: .second, value: 1, to: date)!
-        let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: "Fetching data...")
+        let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: "Fetching data...", ethPrice: "Fetching data...")
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         
         WidgetCenter.shared.reloadAllTimelines()
@@ -66,6 +67,7 @@ struct SimpleEntry: TimelineEntry {
   let date: Date
   let configuration: ConfigurationIntent
   let btcPrice: String
+  let ethPrice: String
 }
 
 prefix operator ⋮
@@ -137,7 +139,7 @@ struct RedhaWidgetEntryView : View {
       }.padding(.vertical, 14.0).padding(.horizontal, 20.0).background(colorScheme == .dark ? ⋮0x2C232E : ⋮0xF0F0F0)
     case .systemMedium:
       HStack(alignment: .center, spacing: 0.0) {
-        Image("Logo")
+        Image(colorScheme == .dark ? "Logo" : "LogoLight")
           .resizable()
           .frame(width: 38.0, height: 38.0)
           .padding(.horizontal, 15.0)
@@ -188,9 +190,9 @@ struct RedhaWidgetEntryView : View {
               
               Spacer()
               
-              Text(entry.btcPrice)
+              Text(entry.ethPrice)
                 .font(.system(size: 21.0, weight: .regular, design: .default))
-                .onChange(of: entry.btcPrice) { change in
+                .onChange(of: entry.ethPrice) { change in
                   WidgetCenter.shared.reloadAllTimelines()
                 }
             }.padding(.horizontal, 16.0)
@@ -241,7 +243,7 @@ struct RedhaWidget: Widget {
 
 struct RedhaWidget_Previews: PreviewProvider {
   static var previews: some View {
-    RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Widget preview"))
+    RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Widget preview", ethPrice: "Widget preview"))
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }

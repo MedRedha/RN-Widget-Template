@@ -25,15 +25,14 @@ const RedhaWidget = () => {
     setEthPrice(ethereumPrice);
 
     //! passing data through the native bridge
-    passValues({btcPrice: bitcoinPrice}).then(() => console.log(bitcoinPrice));
+    passValues({btcPrice: bitcoinPrice, ethPrice: ethereumPrice}).then(() =>
+      console.log(bitcoinPrice)
+    );
   };
 
   useEffect(() => {
     BackgroundTimer.start();
-
-    setInterval(() => {
-      fetchAndSendData();
-    }, 5000);
+    setInterval(() => fetchAndSendData(), 5000);
   }, []);
 
   const passValues = async (widgetData) => {
