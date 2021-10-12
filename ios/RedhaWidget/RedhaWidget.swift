@@ -229,15 +229,15 @@ struct RedhaWidgetEntryView : View {
 
 @main
 struct RedhaWidget: Widget {
-  let kind: String = "Nuri Widget"
+  let kind: String = "com.wuud-team.redhawidget"
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
       RedhaWidgetEntryView(entry: entry)
     }
+    .configurationDisplayName("Nuri Widget")
+    .description("This widget displays live Bitcoin and Ethereum prices.")
     .supportedFamilies([.systemSmall, .systemMedium])
-    .configurationDisplayName("My Widget")
-    .description("This is an example widget.")
   }
 }
 
