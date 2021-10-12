@@ -23,10 +23,17 @@
     "test:apk": "react-native run-android --variant=release"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.4",
     "react": "17.0.2",
     "react-native": "0.65.1",
     "react-native-background-timer": "^2.4.1",
-    "react-native-shared-group-preferences": "^1.1.23"
+    "react-native-elements": "^3.4.2",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.8.0",
+    "react-native-shared-group-preferences": "^1.1.23",
+    "react-native-vector-icons": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
