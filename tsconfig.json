@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules"
-    ],
+    "typeRoots": ["node_modules/@types", "node_modules"],
     "types": [
       "node",
       "jest",
@@ -32,17 +29,12 @@
     "importHelpers": true,
     "noEmit": true,
     "strict": false,
-    "lib": [
-      "es5",
-      "es6"
-    ],
+    "lib": ["es5", "es6"],
     "allowSyntheticDefaultImports": true
   },
-  "files": [
-    "./node_modules",
-    "node_modules/**"
-  ],
+  "files": ["./node_modules", "node_modules/**"],
   "exclude": [
+    "node_modules",
     "node_modules/**",
     "./node_modules",
     "./babel.config.js",

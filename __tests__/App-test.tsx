@@ -3,11 +3,12 @@
  */
 
 import 'react-native';
-import React from 'react';
-import RedhaWidget from '../App';
 
+import React from 'react';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+
+import RedhaWidget from '../App';
 
 it('renders correctly', () => {
   renderer.create(<RedhaWidget />);

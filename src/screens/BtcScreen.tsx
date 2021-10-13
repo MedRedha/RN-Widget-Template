@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const BtcScreen = ({route}) => {
-  const {btcPrice} = route.params;
+const BtcScreen = ({ route }) => {
+  const { btcPrice } = route.params;
 
   return (
     <View style={styles.container}>
-      <Text style={{fontWeight: 'bold', fontSize: 18}}>BTC Price:</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>BTC Price:</Text>
       <Text style={styles.btcInput}>{btcPrice}</Text>
     </View>
   );

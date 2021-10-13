@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import SharedGroupPreferences from 'react-native-shared-group-preferences';
+import { useIsFocused } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
-import {Button, Overlay} from 'react-native-elements';
+import { Button, Overlay } from 'react-native-elements';
+import SharedGroupPreferences from 'react-native-shared-group-preferences';
 import BtcIcon from 'react-native-vector-icons/FontAwesome';
 import EthIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useIsFocused} from '@react-navigation/native';
 
 const appGroupIdentifier = 'group.com.wuud-team.redhawidget';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [btcPrice, setBtcPrice] = useState<string>('0');
   const [ethPrice, setEthPrice] = useState<string>('0');
@@ -30,7 +30,7 @@ const HomeScreen = ({navigation}) => {
     setEthPrice(ethereumPrice);
 
     //! passing data through the native bridge
-    passValues({btcPrice: bitcoinPrice, ethPrice: ethereumPrice}).then(() =>
+    passValues({ btcPrice: bitcoinPrice, ethPrice: ethereumPrice }).then(() =>
       console.log(bitcoinPrice)
     );
   };
@@ -59,11 +59,11 @@ const HomeScreen = ({navigation}) => {
         resizeMode='cover'
         style={styles.image}>
         <Overlay isVisible={isFocused} overlayStyle={styles.overlay}>
-          <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18}}>
+          <Text style={{ fontWeight: 'bold', color: 'white', fontSize: 18 }}>
             BTC Price:
           </Text>
           <Text style={styles.btcInput}>{btcPrice}</Text>
-          <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18}}>
+          <Text style={{ fontWeight: 'bold', color: 'white', fontSize: 18 }}>
             ETH Price:
           </Text>
           <Text style={styles.ethInput}>{ethPrice}</Text>
@@ -74,7 +74,7 @@ const HomeScreen = ({navigation}) => {
                   name='btc'
                   size={22}
                   color='white'
-                  style={{marginRight: 10}}
+                  style={{ marginRight: 10 }}
                 />
               }
               title='Bitcoin'
@@ -90,7 +90,7 @@ const HomeScreen = ({navigation}) => {
                   name='ethereum'
                   size={22}
                   color='white'
-                  style={{marginRight: 10}}
+                  style={{ marginRight: 10 }}
                 />
               }
               title='Ethereum'

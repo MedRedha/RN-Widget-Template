@@ -6,6 +6,8 @@ module.exports = {
   rules: {
     'no-console': ERROR,
     'jsx-quotes': ['error', 'prefer-single'],
-    quotes: [2, 'single', {avoidEscape: true}],
+    quotes: [2, 'single', { avoidEscape: true }],
+    'simple-import-sort/imports': 'error',
   },
+  plugins: ['simple-import-sort'],
 };
