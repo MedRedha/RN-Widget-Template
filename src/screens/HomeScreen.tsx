@@ -31,6 +31,7 @@ const HomeScreen = ({ navigation }) => {
 
     //! passing data through the native bridge
     passValues({ btcPrice: bitcoinPrice, ethPrice: ethereumPrice }).then(() =>
+      // eslint-disable-next-line no-console
       console.log(bitcoinPrice)
     );
   };
