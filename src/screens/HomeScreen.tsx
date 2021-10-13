@@ -80,9 +80,7 @@ const HomeScreen = ({ navigation }) => {
               }
               title='Bitcoin'
               onPress={() => {
-                navigation.navigate('BtcScreen', {
-                  btcPrice: btcPrice,
-                });
+                navigation.navigate('BtcScreen');
               }}
             />
             <Button
@@ -96,9 +94,7 @@ const HomeScreen = ({ navigation }) => {
               }
               title='Ethereum'
               onPress={() => {
-                navigation.navigate('EthScreen', {
-                  ethPrice: ethPrice,
-                });
+                navigation.navigate('EthScreen');
               }}
             />
           </View>

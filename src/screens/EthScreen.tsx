@@ -1,13 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import EthIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const EthScreen = ({ route }) => {
-  const { ethPrice } = route.params;
-
+const EthScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>ETH Price:</Text>
-      <Text style={styles.ethInput}>{ethPrice}</Text>
+      <EthIcon
+        name='ethereum'
+        size={70}
+        color='black'
+        style={{ marginRight: 10 }}
+      />
+      <Text style={styles.ethInput}>This is the Ethereum Screen</Text>
     </View>
   );
 };
@@ -21,7 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   ethInput: {
-    marginTop: 8,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 26,

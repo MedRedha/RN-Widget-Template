@@ -3,12 +3,12 @@ import SwiftUI
 import Intents
 
 extension Date {
-
-var zeroSeconds: Date? {
+  
+  var zeroSeconds: Date? {
     let calendar = Calendar.current
-  let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
+    let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
     return calendar.date(from: dateComponents)
-}}
+  }}
 
 struct WidgetData: Decodable {
   var btcPrice: String
@@ -136,7 +136,7 @@ struct RedhaWidgetEntryView : View {
             .font(.system(size: 12.0, weight: .regular))
             .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x2C232E)
         }
-      }.padding(.vertical, 14.0).padding(.horizontal, 20.0).background(colorScheme == .dark ? ⋮0x2C232E : ⋮0xF0F0F0)
+      }.padding(.vertical, 14.0).padding(.horizontal, 20.0).background(colorScheme == .dark ? ⋮0x2C232E : ⋮0xF0F0F0).widgetURL(URL(string: "nuriwidget://btc")!)
     case .systemMedium:
       HStack(alignment: .center, spacing: 0.0) {
         Image(colorScheme == .dark ? "Logo" : "LogoLight")
@@ -150,69 +150,73 @@ struct RedhaWidgetEntryView : View {
           Spacer()
           
           VStack(alignment: .center) {
-            HStack(alignment: .center) {
-              Text("BTC")
-                .bold()
-                .font(.system(size: 22.0, design: .default))
+            Link(destination: URL(string: "nuriwidget://btc")!) {
+              HStack(alignment: .center) {
+                Text("BTC")
+                  .bold()
+                  .font(.system(size: 22.0, design: .default))
+                
+                Spacer()
+                
+                Text(entry.btcPrice)
+                  .font(.system(size: 21.0, weight: .regular, design: .default))
+                  .onChange(of: entry.btcPrice) { change in
+                    WidgetCenter.shared.reloadAllTimelines()
+                  }
+              }.padding(.horizontal, 16.0)
               
-              Spacer()
-              
-              Text(entry.btcPrice)
-                .font(.system(size: 21.0, weight: .regular, design: .default))
-                .onChange(of: entry.btcPrice) { change in
-                  WidgetCenter.shared.reloadAllTimelines()
-                }
-            }.padding(.horizontal, 16.0)
-            
-            HStack(alignment: .center) {
-              Text("Bitcoin")
-                .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
-                .font(.system(size: 16.0, weight: .regular, design: .default))
-              
-              Spacer()
-              
-              HStack{
-                Image(systemName: "arrowtriangle.down.fill")
-                  .font(.system(size: 12.0, weight: .bold))
-                  .foregroundColor(Color.red)
-                Text("79,9%")
+              HStack(alignment: .center) {
+                Text("Bitcoin")
+                  .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
                   .font(.system(size: 16.0, weight: .regular, design: .default))
-                  .foregroundColor(⋮0xFF2500)
-              }
-            }.padding(.horizontal, 16.0)
+                
+                Spacer()
+                
+                HStack{
+                  Image(systemName: "arrowtriangle.down.fill")
+                    .font(.system(size: 12.0, weight: .bold))
+                    .foregroundColor(Color.red)
+                  Text("79,9%")
+                    .font(.system(size: 16.0, weight: .regular, design: .default))
+                    .foregroundColor(⋮0xFF2500)
+                }
+              }.padding(.horizontal, 16.0)
+            }
             
             Divider().background(⋮0xCAC8CB).frame(width: .infinity, height: 10.0, alignment: .center)
             
-            HStack(alignment: .center) {
-              Text("ETH")
-                .bold()
-                .font(.system(size: 22.0, design: .default))
+            Link(destination: URL(string: "nuriwidget://eth")!) {
+              HStack(alignment: .center) {
+                Text("ETH")
+                  .bold()
+                  .font(.system(size: 22.0, design: .default))
+                
+                Spacer()
+                
+                Text(entry.ethPrice)
+                  .font(.system(size: 21.0, weight: .regular, design: .default))
+                  .onChange(of: entry.ethPrice) { change in
+                    WidgetCenter.shared.reloadAllTimelines()
+                  }
+              }.padding(.horizontal, 16.0)
               
-              Spacer()
-              
-              Text(entry.ethPrice)
-                .font(.system(size: 21.0, weight: .regular, design: .default))
-                .onChange(of: entry.ethPrice) { change in
-                  WidgetCenter.shared.reloadAllTimelines()
-                }
-            }.padding(.horizontal, 16.0)
-            
-            HStack(alignment: .center) {
-              Text("Ethereum")
-                .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
-                .font(.system(size: 16.0, weight: .regular, design: .default))
-              
-              Spacer()
-              
-              HStack{
-                Image(systemName: "arrowtriangle.up.fill")
-                  .font(.system(size: 12.0, weight: .bold))
-                  .foregroundColor(⋮0x1CC18C)
-                Text("19,1%")
+              HStack(alignment: .center) {
+                Text("Ethereum")
+                  .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
                   .font(.system(size: 16.0, weight: .regular, design: .default))
-                  .foregroundColor(⋮0x1CC18C)
-              }
-            }.padding(.horizontal, 16.0)
+                
+                Spacer()
+                
+                HStack{
+                  Image(systemName: "arrowtriangle.up.fill")
+                    .font(.system(size: 12.0, weight: .bold))
+                    .foregroundColor(⋮0x1CC18C)
+                  Text("19,1%")
+                    .font(.system(size: 16.0, weight: .regular, design: .default))
+                    .foregroundColor(⋮0x1CC18C)
+                }
+              }.padding(.horizontal, 16.0)
+            }
           }.frame(
             maxWidth: .infinity,
             maxHeight: .infinity

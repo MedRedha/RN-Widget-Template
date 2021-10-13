@@ -32,16 +32,8 @@ const RedhaWidget = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name='BtcScreen'
-          component={BtcScreen}
-          initialParams={{ btcPrice: 0 }}
-        />
-        <Stack.Screen
-          name='EthScreen'
-          component={EthScreen}
-          initialParams={{ ethPrice: 0 }}
-        />
+        <Stack.Screen name='BtcScreen' component={BtcScreen} />
+        <Stack.Screen name='EthScreen' component={EthScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
