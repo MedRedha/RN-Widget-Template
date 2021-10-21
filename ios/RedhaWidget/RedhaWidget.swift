@@ -17,18 +17,37 @@ struct WidgetData: Decodable {
 
 struct Provider: IntentTimelineProvider {
   func placeholder(in context: Context) -> SimpleEntry {
-    SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Placeholder", ethPrice: "Placeholder")
+    SimpleEntry(date: Date(), configuration: RedhaWidgetConfigurationIntent(), btcPrice: "Placeholder", ethPrice: "Placeholder", chosenCurrency: true, theme: true)
   }
   
-  func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-    let entry = SimpleEntry(date: Date(), configuration: configuration, btcPrice: "32,800€", ethPrice: "1750.20€")
+  func getSnapshot(for configuration: RedhaWidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    let entry = SimpleEntry(date: Date(), configuration: configuration, btcPrice: "32,800€", ethPrice: "1750.20€", chosenCurrency: true, theme: true)
     completion(entry)
   }
   
-  func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
+  func getTimeline(for configuration: RedhaWidgetConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
     let userDefaults = UserDefaults.init(suiteName: "group.com.wuud-team.redhawidget")
     let date = Date().zeroSeconds!
     var entries: [SimpleEntry] = []
+    
+    let theme: Bool
+    let chosenCurrency: Bool
+    
+    switch configuration.theme {
+    case .dark:
+      theme = true
+    case .light:
+      theme = false
+    }
+    
+    switch configuration.currency {
+    case .unknown, .all:
+      chosenCurrency = true
+    case .bitcoin:
+      chosenCurrency = true
+    case .ethereum:
+      chosenCurrency = false
+    }
     
     if userDefaults != nil {
       if let savedData = userDefaults!.value(forKey: "savedData") as? String {
@@ -39,7 +58,7 @@ struct Provider: IntentTimelineProvider {
           
           for interval in 0 ..< 60 {
             let nextRefresh = Calendar.current.date(byAdding: .second , value: interval, to: date)!
-            let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: parsedData.btcPrice, ethPrice: parsedData.ethPrice)
+            let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: parsedData.btcPrice, ethPrice: parsedData.ethPrice, chosenCurrency: chosenCurrency, theme: theme)
             entries.append(entry)
           }
           
@@ -53,7 +72,7 @@ struct Provider: IntentTimelineProvider {
         
       } else {
         let nextRefresh = Calendar.current.date(byAdding: .second, value: 1, to: date)!
-        let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: "Fetching data...", ethPrice: "Fetching data...")
+        let entry = SimpleEntry(date: nextRefresh, configuration: configuration, btcPrice: "Fetching data...", ethPrice: "Fetching data...", chosenCurrency: chosenCurrency, theme: theme)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         
         WidgetCenter.shared.reloadAllTimelines()
@@ -65,9 +84,11 @@ struct Provider: IntentTimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
   let date: Date
-  let configuration: ConfigurationIntent
+  let configuration: RedhaWidgetConfigurationIntent
   let btcPrice: String
   let ethPrice: String
+  var chosenCurrency: Bool = false
+  var theme: Bool = true
 }
 
 prefix operator ⋮
@@ -90,7 +111,7 @@ let hexColor:(UInt32) -> (Color) = {
 
 struct RedhaWidgetEntryView : View {
   @Environment(\.widgetFamily) var family
-  @Environment(\.colorScheme) var colorScheme
+  //  @Environment(\.colorScheme) var colorScheme
   var entry: Provider.Entry
   
   @ViewBuilder
@@ -99,12 +120,23 @@ struct RedhaWidgetEntryView : View {
     case .systemSmall:
       VStack(alignment: .leading) {
         HStack(alignment: .lastTextBaseline) {
-          Text("BTC")
-            .bold()
-            .font(.system(size: 22.0, design: .default))
-          Text("Bitcoin")
-            .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
-            .font(.system(size: 16.0, weight: .regular, design: .default))
+          if entry.chosenCurrency {
+            Text("BTC")
+              .bold()
+              .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
+              .font(.system(size: 22.0, design: .default))
+            Text("Bitcoin")
+              .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x6D6D86)
+              .font(.system(size: 16.0, weight: .regular, design: .default))
+          } else {
+            Text("ETH")
+              .bold()
+              .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
+              .font(.system(size: 22.0, design: .default))
+            Text("Ethereum")
+              .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x6D6D86)
+              .font(.system(size: 13.0, weight: .regular, design: .default))
+          }
           
           Spacer()
         }
@@ -120,26 +152,33 @@ struct RedhaWidgetEntryView : View {
         
         Spacer()
         
-        Text(entry.btcPrice)
-          .font(.system(size: 21.0, weight: .regular, design: .default))
+        if entry.chosenCurrency {
+          Text(entry.btcPrice)
+            .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
+            .font(.system(size: 21.0, weight: .regular, design: .default))
+        } else {
+          Text(entry.ethPrice)
+            .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
+            .font(.system(size: 21.0, weight: .regular, design: .default))
+        }
         
         Divider().background(⋮0xCAC8CB).frame(alignment: .center)
         
         HStack(alignment: .center) {
           Text("NURI")
-            .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x000000)
+            .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x000000)
             .font(.system(size: 14.0, weight: .regular, design: .default))
           
           Spacer()
           
           Image(systemName: "chevron.right")
             .font(.system(size: 12.0, weight: .regular))
-            .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x2C232E)
+            .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
         }
-      }.padding(.vertical, 14.0).padding(.horizontal, 20.0).background(colorScheme == .dark ? ⋮0x2C232E : ⋮0xF0F0F0).widgetURL(URL(string: "nuriwidget://btc")!)
+      }.padding(.vertical, 14.0).padding(.horizontal, 20.0).background(entry.theme ? ⋮0x2C232E : ⋮0xF0F0F0).widgetURL(URL(string: "nuriwidget://btc")!)
     case .systemMedium:
       HStack(alignment: .center, spacing: 0.0) {
-        Image(colorScheme == .dark ? "Logo" : "LogoLight")
+        Image(entry.theme ? "Logo" : "LogoLight")
           .resizable()
           .frame(width: 38.0, height: 38.0)
           .padding(.horizontal, 15.0)
@@ -154,11 +193,13 @@ struct RedhaWidgetEntryView : View {
               HStack(alignment: .center) {
                 Text("BTC")
                   .bold()
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
                   .font(.system(size: 22.0, design: .default))
                 
                 Spacer()
                 
                 Text(entry.btcPrice)
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
                   .font(.system(size: 21.0, weight: .regular, design: .default))
                   .onChange(of: entry.btcPrice) { change in
                     WidgetCenter.shared.reloadAllTimelines()
@@ -167,7 +208,7 @@ struct RedhaWidgetEntryView : View {
               
               HStack(alignment: .center) {
                 Text("Bitcoin")
-                  .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x6D6D86)
                   .font(.system(size: 16.0, weight: .regular, design: .default))
                 
                 Spacer()
@@ -189,11 +230,13 @@ struct RedhaWidgetEntryView : View {
               HStack(alignment: .center) {
                 Text("ETH")
                   .bold()
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
                   .font(.system(size: 22.0, design: .default))
                 
                 Spacer()
                 
                 Text(entry.ethPrice)
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x2C232E)
                   .font(.system(size: 21.0, weight: .regular, design: .default))
                   .onChange(of: entry.ethPrice) { change in
                     WidgetCenter.shared.reloadAllTimelines()
@@ -202,7 +245,7 @@ struct RedhaWidgetEntryView : View {
               
               HStack(alignment: .center) {
                 Text("Ethereum")
-                  .foregroundColor(colorScheme == .dark ? ⋮0xDFDDDD : ⋮0x6D6D86)
+                  .foregroundColor(entry.theme ? ⋮0xDFDDDD : ⋮0x6D6D86)
                   .font(.system(size: 16.0, weight: .regular, design: .default))
                 
                 Spacer()
@@ -224,7 +267,7 @@ struct RedhaWidgetEntryView : View {
           
           Spacer()
         }
-      }.background(colorScheme == .dark ? ⋮0x2C232E : ⋮0xF0F0F0).padding(0.0)
+      }.background(entry.theme ? ⋮0x2C232E : ⋮0xF0F0F0).padding(0.0)
     default:
       Text("Some other WidgetFamily in the future.")
     }
@@ -236,18 +279,19 @@ struct RedhaWidget: Widget {
   let kind: String = "com.wuud-team.redhawidget"
   
   var body: some WidgetConfiguration {
-    IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+    IntentConfiguration(kind: kind, intent: RedhaWidgetConfigurationIntent.self, provider: Provider()) { entry in
       RedhaWidgetEntryView(entry: entry)
     }
     .configurationDisplayName("Nuri Widget")
-    .description("This widget displays live Bitcoin and Ethereum prices.")
+    .description("Nuri's Widget displays live Bitcoin and Ethereum prices. You can choose your own configuration:")
     .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
+
 struct RedhaWidget_Previews: PreviewProvider {
   static var previews: some View {
-    RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), btcPrice: "Widget preview", ethPrice: "Widget preview"))
+    RedhaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: RedhaWidgetConfigurationIntent(), btcPrice: "Widget preview", ethPrice: "Widget preview"))
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }
