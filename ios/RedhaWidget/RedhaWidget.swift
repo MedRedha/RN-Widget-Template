@@ -142,12 +142,21 @@ struct RedhaWidgetEntryView : View {
         }
         
         HStack{
-          Image(systemName: "arrowtriangle.down.fill")
-            .font(.system(size: 12.0, weight: .bold))
-            .foregroundColor(Color.red)
-          Text("79,9%")
-            .font(.system(size: 16.0, weight: .bold, design: .default))
-            .foregroundColor(⋮0xFF2500)
+          if entry.chosenCurrency {
+            Image(systemName: "arrowtriangle.down.fill")
+              .font(.system(size: 12.0, weight: .bold))
+              .foregroundColor(Color.red)
+            Text("79,9%")
+              .font(.system(size: 16.0, weight: .bold, design: .default))
+              .foregroundColor(⋮0xFF2500)
+          } else {
+            Image(systemName: "arrowtriangle.up.fill")
+              .font(.system(size: 12.0, weight: .bold))
+              .foregroundColor(⋮0x1CC18C)
+            Text("19,1%")
+              .font(.system(size: 16.0, weight: .regular, design: .default))
+              .foregroundColor(⋮0x1CC18C)
+          }
         }
         
         Spacer()
